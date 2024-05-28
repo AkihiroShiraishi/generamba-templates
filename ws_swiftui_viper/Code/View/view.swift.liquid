@@ -1,0 +1,19 @@
+//
+//  {{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import SwiftUI
+
+struct {{ module_info.name }}View: View {
+    @ObservedObject var state: {{ module_info.name }}ViewState
+    
+    let sampleAction: (() -> Void)
+    
+    var body: some View {
+        EmptyView()
+    }
+}

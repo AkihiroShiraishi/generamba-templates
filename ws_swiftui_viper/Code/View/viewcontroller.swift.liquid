@@ -1,0 +1,64 @@
+//
+//  {{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+import SwiftUI
+
+@MainActor
+protocol {{ module_info.name }}Protocol: AnyObject {
+    func setUI()
+    func configureContentView() -> {{ module_info.name }}View?
+}
+
+class {{ module_info.name }}ViewController: UIViewController {
+
+    var presenter: {{ module_info.name }}Presentation?
+    private var state: {{ module_info.name }}ViewState?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        guard let presenter = presenter else {
+            return
+        }
+
+        presenter.viewDidLoad()
+    }
+
+}
+
+extension {{ module_info.name }}ViewController: {{ module_info.name }}Protocol{
+    func setUI() {
+        guard let contentView = configureContentView() else { return }
+        let hc = UIHostingController(rootView: contentView)
+        addChild(hc)
+        self.view.addSubview(hc.view)
+        self.view.addConstraints(for: hc.view)
+    }
+    
+    internal func configureContentView() -> {{ module_info.name }}View? {
+        guard let presenter = self.presenter else { return nil }
+        state = {{ module_info.name }}ViewState()
+        guard let state = state else { return nil }
+        return {{ module_info.name }}View(
+            state: state,
+            sampleAction: {
+            })
+    }
+}
+
+extension UIView{
+    func addConstraints(for childView: UIView, insets: UIEdgeInsets = .zero) {
+        childView.translatesAutoresizingMaskIntoConstraints = false
+
+        topAnchor.constraint(equalTo: childView.topAnchor, constant: insets.top).isActive = true
+        bottomAnchor.constraint(equalTo: childView.bottomAnchor, constant: insets.bottom).isActive = true
+        leadingAnchor.constraint(equalTo: childView.leadingAnchor, constant: insets.left).isActive = true
+        trailingAnchor.constraint(equalTo: childView.trailingAnchor, constant: insets.right).isActive = true
+    }
+}
