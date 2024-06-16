@@ -37,6 +37,7 @@ extension {{ module_info.name }}ViewController: {{ module_info.name }}Protocol{
         guard let contentView = configureContentView() else { return }
         let hc = UIHostingController(rootView: contentView)
         addChild(hc)
+        hc.didMove(toParent: self)
         self.view.addSubview(hc.view)
         self.view.addConstraints(for: hc.view)
     }
