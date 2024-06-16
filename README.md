@@ -41,3 +41,6 @@ This is template catalog for [Generamba](https://github.com/strongself/Generamba
 
 - ws_swiftui_viper
 
+![SwiftUI+VIPER](https://github.com/AkihiroShiraishi/generamba-templates/assets/47495249/f5a4eb98-e957-454f-919a-bc0050068807)
+
+
